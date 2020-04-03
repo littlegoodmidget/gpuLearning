@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script id='vshader' type='glsl'>
+        attribute vec2 a_position;
+        attribute vec2 a_uvcoord;
+
+        varying vec2 v_uvcoord;
+
+        void main()
+        {
+            v_uvcoord = a_uvcoord;
+
+
+            gl_Position = vec4(a_position, 0.0, 1.0);
+        }
+    </script>
+    <script id='fshader' type='glsl'>
+        precision highp float;
+
+        uniform sampler2D u_tex;
+
+        varying vec2 v_uvcoord;
+        
+        void main()
+        {
+            gl_FragColor = texture2D(
+                u_tex,
+                v_uvcoord
+            ) + 100.0 / 255.0;
+        }
+    </script>
+
+
+
+
+
+
+
+    <script src="main.js" defer></script>
+
+    <title>Falling Sand</title>
+</head>
+<body>
+    
+</body>
+</html>
